@@ -1,0 +1,17 @@
+<launch>
+   <node pkg="robot_sensors" type="sensor_publ_node" name="sensor_publ" output="screen">
+      <param name="ScanSubTopic" value="/roombot/scan" />
+      <param name="FrameId" value="laser_link" />
+   </node>
+   <node pkg="robot_odom" type="odom_publ_node" name="odom_publ" output="screen">
+      <param name="OdomSubTopic" value="/t265/odom/sample" />
+      <param name="FrameId" value="odom" />
+      <param name="ChildFrameId" value="roombot_base_link" />
+   </node>
+   <node pkg="robot_setup_tf" type="tf_broadcaster" name="tf_broadcaster" output="screen">
+     <param name="map_frame" value="map" />
+     <param name="base_frame" value="roombot_base_link" />
+     <param name="lasr_frame" value="laser_link" />
+     <param name="cam_link" value="cam_link" />
+   </node>
+</launch>

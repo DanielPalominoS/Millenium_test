@@ -1,0 +1,17 @@
+<launch>
+  <!--<param name="use_sim_time" value="true"/>-->
+  <!-- Map Server  -->
+  <arg name="map_file" default="/home/daniel/catkin_ws/src/millenium_test/files/test_map.yaml"/>
+  <node pkg="map_server" type="map_server" name="map_server"  args="$(arg map_file)"/>
+
+  <!--- Run AMCL -->
+  <include file="$(find robot_localization_test)/launch/amcl_conf.launch" >
+    <arg name="use_map_topic" value="true"/>
+    <arg name="scan_topic" value="/robot/scan"/>
+    <arg name="initial_pose_x" value="0"/>
+    <arg name="initial_pose_y" value="0"/>
+    <arg name="initial_pose_a" value="0"/>
+    <!--<arg name="" default=""/>-->
+  </include>
+
+</launch>
